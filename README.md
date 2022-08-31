@@ -10,15 +10,15 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
  > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git`
 
 ### Ejecutar Gradle
- > `Abrir una terminal en la nueva carpeta (users) y ejecutar: gradle clean build`  
+ > `Abrir una terminal en la nueva carpeta (users) y ejecutar: gradle clean build` 
 
 ### ENDPOINTS
 
 ### GET: 	`http://localhost:8080/users`
- > `Servicio para obtener todos los usuarios creados
+ > `Servicio para obtener todos los usuarios creados`
  
 ### POST: 	`http://localhost:8080/users`
- > `Servicio para crear un nuevo usuario
+ > `Servicio para crear un nuevo usuario`
  
      {
         "name": "Juan Rodriguez",
@@ -34,7 +34,7 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
     }
     
 ### PUT: 	`http://localhost:8080/users`
- > `Servicio para actualizar un usuario
+ > `Servicio para actualizar un usuario`
  	 
    {
         "id": "2d08be78-3285-4abc-b378-3ac4940b137b",
@@ -52,11 +52,11 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
     }
     
 ### DELETE: 	`http://localhost:8080/users/{id}`
- > `Servicio para eliminar un usuario
+ > `Servicio para eliminar un usuario`
 
 ### SWAGGER
  > `Para abrir la herramienta swagger nos dirigimos a la página: http://localhost:8080/swagger-ui.html`
 
-### H2-CONSOLE
+### H2 DATABASE
  > `Para abrir la pantalla de administración de la base de datos en memoria se ejecuta : http://localhost:8080/h2-console`
  > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante un script`
