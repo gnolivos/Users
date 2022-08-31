@@ -22,7 +22,6 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 
 import io.jsonwebtoken.Jwts;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -34,21 +33,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Users {
 
-	@Schema(description= "Generated while UUID", required = true)
 	@Id
 	@Column(name = "ID")
 	private String id;
 
-    @Schema(description="Name should not be blank",required = true)
 	@Column(name = "NAME")
     private String name;
 
-    @Schema(description="Email should not be blank",required = true)
 	@NotBlank(message = "Email should not be blank")
 	@Column(name = "EMAIL")
     private String email;
 
-    @Schema(description="Password should not be blank",required = true)
 	@Column(name = "PASSWORD")
     private String password;
 	

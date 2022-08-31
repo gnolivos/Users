@@ -13,7 +13,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -25,7 +24,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Phones {
 	
-	@Schema(description= "Generated while UUID", required = true)
 	@Id
 	@Column(name = "ID")
 	private String id;
