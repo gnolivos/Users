@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,7 +65,27 @@ public class UserController {
 			response.setUserResponse(this.userService.save(request));
 			return new ResponseEntity<GlobalResponse>(response, HttpStatus.CREATED);
 		} catch (Exception e) {
-			//throw new UserNotFoundException(e.getMessage());
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage(e.getMessage());
+			response.setUserResponse(null);
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+    }
+	
+	/**
+	 * Update user
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@PutMapping
+    public ResponseEntity<GlobalResponse> update(@RequestBody UserRequest request) {
+		try {
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage("Usuario actualizado exitosamente.");
+			response.setUserResponse(this.userService.saveOrUpdate(request));
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.OK);
+		} catch (Exception e) {
 			GlobalResponse response = new GlobalResponse();
 			response.setMessage(e.getMessage());
 			response.setUserResponse(null);

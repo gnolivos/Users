@@ -8,11 +8,24 @@ import java.util.List;
  */
 public class UserRequest {
 	
+	private String id;
 	private String name;
 	private String email;
 	private String password;
 	private List<PhoneRequest> phones;
 	
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 	/**
 	 * @return the name
 	 */

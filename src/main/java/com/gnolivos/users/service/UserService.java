@@ -1,7 +1,9 @@
 package com.gnolivos.users.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -51,14 +53,21 @@ public class UserService implements IUserService{
 	@Override
 	public UserResponse save(UserRequest request) throws UserValidationException {
 		try {
-			// Validate email
+			
+			// Validate if email exist
+			Users user = userRepository.findByEmail(request.getEmail());
+			if(user != null) {
+				throw new UserValidationException("El correo ya se encuentra registrado.");
+			}
+			
+			// Validate regular expression email
 			this.validateEmail(request.getEmail());
 			
-			// Validate password
+			// Validate regular expression password
 			this.validatePassword(request.getPassword());
 			
 			// Create user object
-			Users user = this.userRepository.save(this.createUser(request));
+			user = this.userRepository.save(this.createUser(request, Boolean.FALSE));
 			
 			// Return a user response
 			return this.convertToUserResponse(user);
@@ -68,13 +77,36 @@ public class UserService implements IUserService{
 		}
 	}
 	
-	private void validateEmail(String email) {
-		// Validate if email exist
-		Users user = userRepository.findByEmail(email);
-		if(user != null) {
-			throw new UserValidationException("El correo ya se encuentra registrado.");
+	/*
+	 * (non-Javadoc)
+	 * @see com.gnolivos.users.service.IUserService#saveOrUpdate(com.gnolivos.users.vo.UserRequest)
+	 */
+	@Override
+	public UserResponse saveOrUpdate(UserRequest request) throws UserValidationException {
+		try {
+			Optional<Users> user = this.userRepository.findById(request.getId());
+			if(user.isPresent()) {
+				// Validate email
+				this.validateEmail(request.getEmail());
+				
+				// Validate password
+				this.validatePassword(request.getPassword());
+				
+				// Create user object
+				Users userResponse = this.userRepository.save(this.createUser(request, Boolean.TRUE));
+				
+				// Return a user response
+				return this.convertToUserResponse(userResponse);
+				
+			}
+			throw new UserValidationException("No existe el usuario ingresado.");
+		} catch (Exception e) {
+			throw new UserValidationException(e.getMessage());
 		}
 		
+	}
+	
+	private void validateEmail(String email) {
 		// Validate regular expression of email (aaaaaaa@dominio.cl)
 		Pattern pattern = Pattern.compile(applicationProperties.getRegExpEmail());
 		Matcher matcher = pattern.matcher(email);
@@ -100,7 +132,7 @@ public class UserService implements IUserService{
 		}
 	}
 	
-	private Users createUser(UserRequest request) {
+	private Users createUser(UserRequest request, Boolean isUpdate) {
 		// Create user object
 		Users user = new Users();
 		user.setName(request.getName());
@@ -119,6 +151,10 @@ public class UserService implements IUserService{
 			}
 			user.setPhones(new ArrayList());
 			user.setPhones(phoneList);
+		}
+		
+		if(isUpdate) {
+			user.setModified(new Date());
 		}
 		return user;
 	}

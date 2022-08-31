@@ -21,5 +21,12 @@ public interface IUserService {
      * @return
      */
     UserResponse save(UserRequest request);
+    
+    /**
+     * Update user
+     * @param request
+     * @return
+     */
+    UserResponse saveOrUpdate(UserRequest request);
 
 }

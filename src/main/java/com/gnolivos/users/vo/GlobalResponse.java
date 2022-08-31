@@ -1,8 +1,13 @@
 package com.gnolivos.users.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class GlobalResponse {
 	
 	private String message;
+	
+	@JsonInclude(Include.NON_NULL)
 	private UserResponse userResponse;
 	
 	/**
