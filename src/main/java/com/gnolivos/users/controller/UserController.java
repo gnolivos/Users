@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gnolivos.users.common.ApplicationProperties;
-import com.gnolivos.users.common.UserNotFoundException;
+import com.gnolivos.users.common.UserValidationException;
 import com.gnolivos.users.entity.Users;
 import com.gnolivos.users.service.IUserService;
+import com.gnolivos.users.vo.GlobalResponse;
 import com.gnolivos.users.vo.UserRequest;
-import com.gnolivos.users.vo.UserResponse;
 
 /**
  * @author gabriel.nolivos
@@ -57,11 +57,18 @@ public class UserController {
 	 * @throws Exception 
 	 */
 	@PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) throws UserNotFoundException {
+    public ResponseEntity<GlobalResponse> create(@RequestBody UserRequest request) throws UserValidationException {
 		try {
-			return new ResponseEntity<UserResponse>(this.userService.save(request), HttpStatus.CREATED);
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage("Usuario creado exitosamente.");
+			response.setUserResponse(this.userService.save(request));
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.CREATED);
 		} catch (Exception e) {
-			throw new UserNotFoundException(e.getMessage());
+			//throw new UserNotFoundException(e.getMessage());
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage(e.getMessage());
+			response.setUserResponse(null);
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
     }
 

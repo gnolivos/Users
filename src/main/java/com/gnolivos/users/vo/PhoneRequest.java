@@ -1,9 +1,5 @@
 package com.gnolivos.users.vo;
 
-/**
- * @author gabriel.nolivos
- *
- */
 public class PhoneRequest {
 	
 	private Integer number;

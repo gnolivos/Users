@@ -2,10 +2,6 @@ package com.gnolivos.users.vo;
 
 import java.util.Date;
 
-/**
- * @author gabriel.nolivos
- *
- */
 public class UserResponse {
 	
 	private String id;

@@ -1,6 +1,5 @@
 package com.gnolivos.users.vo;
 
-import java.util.Collection;
 import java.util.List;
 
 /**

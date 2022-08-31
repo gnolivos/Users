@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.gnolivos.users.common.ApplicationProperties;
-import com.gnolivos.users.common.UserNotFoundException;
+import com.gnolivos.users.common.UserValidationException;
 import com.gnolivos.users.entity.Phones;
 import com.gnolivos.users.entity.Users;
 import com.gnolivos.users.repository.IUserRepository;
@@ -49,7 +49,7 @@ public class UserService implements IUserService{
 	 * @see com.gnolivos.users.service.IUserService#save(com.gnolivos.users.vo.UserRequest)
 	 */
 	@Override
-	public UserResponse save(UserRequest request) throws UserNotFoundException {
+	public UserResponse save(UserRequest request) throws UserValidationException {
 		try {
 			// Validate email
 			this.validateEmail(request.getEmail());
@@ -64,7 +64,7 @@ public class UserService implements IUserService{
 			return this.convertToUserResponse(user);
 			
 		} catch (Exception e) {
-			throw new UserNotFoundException(e.getMessage());
+			throw new UserValidationException(e.getMessage());
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class UserService implements IUserService{
 		// Validate if email exist
 		Users user = userRepository.findByEmail(email);
 		if(user != null) {
-			throw new UserNotFoundException("El correo ya se encuentra registrado.");
+			throw new UserValidationException("El correo ya se encuentra registrado.");
 		}
 		
 		// Validate regular expression of email (aaaaaaa@dominio.cl)
@@ -80,7 +80,7 @@ public class UserService implements IUserService{
 		Matcher matcher = pattern.matcher(email);
 		
 		if(!matcher.matches()) {
-			throw new UserNotFoundException("El formato del correo es incorrecto.");
+			throw new UserValidationException("El formato del correo es incorrecto.");
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class UserService implements IUserService{
 		// Password must contain a length of at least 8 characters and a maximum of 20 characters.
         
         if(!matcher.matches()) {
-			throw new UserNotFoundException("La contraseña no cumple con los requerimientos solicitados.");
+			throw new UserValidationException("La contraseña no cumple con los requerimientos solicitados.");
 		}
 	}
 	

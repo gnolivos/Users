@@ -3,16 +3,16 @@ package com.gnolivos.users.common;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends RuntimeException {
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+public class UserValidationException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
-	public UserNotFoundException(String message) {
+	public UserValidationException(String message) {
 		super(message);
 	}
 	
-	public UserNotFoundException(String userId, String message) {
+	public UserValidationException(String userId, String message) {
 		super("Could not find user with id = " + userId + ", Message = " +message);
 	}
 	
