@@ -36,11 +36,6 @@ public class UserController {
     @Autowired
     private ApplicationProperties applicationProperties;
 	
-	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = "application/json")
-	public String hello() {
-		return "Hola Mundo";
-	}
-	
 	/**
 	 * Get all users
 	 * @return
