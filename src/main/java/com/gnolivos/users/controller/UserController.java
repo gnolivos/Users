@@ -57,7 +57,7 @@ public class UserController {
 	 * @throws Exception 
 	 */
 	@PostMapping
-    public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) throws UserNotFoundException {
 		try {
 			return new ResponseEntity<UserResponse>(this.userService.save(request), HttpStatus.CREATED);
 		} catch (Exception e) {

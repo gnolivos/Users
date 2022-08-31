@@ -12,8 +12,8 @@ public class UserNotFoundException extends RuntimeException {
 		super(message);
 	}
 	
-	public UserNotFoundException(String resourceId, String message) {
-		super("Could not find resource with resourceId = " + resourceId + ", Message = " +message);
+	public UserNotFoundException(String userId, String message) {
+		super("Could not find user with id = " + userId + ", Message = " +message);
 	}
 	
 }

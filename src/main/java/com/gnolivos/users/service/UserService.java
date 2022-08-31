@@ -64,7 +64,7 @@ public class UserService implements IUserService{
 			return this.convertToUserResponse(user);
 			
 		} catch (Exception e) {
-			throw new UserNotFoundException(e.getCause().getMessage());
+			throw new UserNotFoundException(e.getMessage());
 		}
 	}
 	
