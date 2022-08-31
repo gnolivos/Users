@@ -6,6 +6,8 @@ También está implementado la herramienta Swagger para especificar la lista de 
 
 El script de la creación de las tablas se encuentra en la dirección: users/src/main/resources/data.sql
 
+Se implementó JWT como token de usuario y UUID como identificador único de usuario.
+
 ### Clonar proyecto
  > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git`
 
@@ -35,15 +37,15 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
     
 ### PUT: 	`http://localhost:8080/users`
  > `Servicio para actualizar un usuario`
- 	 
-   {
-        "id": "2d08be78-3285-4abc-b378-3ac4940b137b",
+ 
+     {
+	       "id":  "890f9114-f1bf-49b8-bcba-da4e3c1d0e39",
         "name": "Juan Rodriguez",
         "email": "juan@rodriguez.org",
         "password": "Chanchito11@",
         "phones": [
             {
-                "id": "35c9a523-d5e7-45c9-b4a9-cbf1823a739a",
+		              "id":  "35c9a523-d5e7-45c9-b4a9-cbf1823a739a",
                 "number": "1234567",
                 "citycode": "1",
                 "countrycode": "57"
@@ -55,8 +57,8 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
  > `Servicio para eliminar un usuario`
 
 ### SWAGGER
- > `Para abrir la herramienta swagger nos dirigimos a la página: http://localhost:8080/swagger-ui.html`
+ > `Podemos acceder mediante la url: http://localhost:8080/swagger-ui.html`
 
 ### H2 DATABASE
  > `Para abrir la pantalla de administración de la base de datos en memoria se ejecuta : http://localhost:8080/h2-console`
- > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante un script`
+ > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante el script mencionado anteriormente`
