@@ -6,7 +6,8 @@ También está implementado la herramienta Swagger para especificar la lista de 
 
 
 ### Clone
- > `Crear una carpeta (users), abrir la terminaly ejecutar: git clone https://github.com/gnolivos/Users.git`
+ > `Crear una carpeta (users), abrir la terminaly ejecutar:`
+ > `git clone https://github.com/gnolivos/Users.git`
 
 ### Gradle
  > `Abrir una terminal en la nueva carpeta (users) y ejecutar: gradle clean build`  
