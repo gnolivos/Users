@@ -67,7 +67,7 @@ public class UserService implements IUserService{
 			this.validatePassword(request.getPassword());
 			
 			// Create user object
-			user = this.userRepository.save(this.createUser(request, Boolean.FALSE));
+			user = this.userRepository.save(this.createUser(request));
 			
 			// Return a user response
 			return this.convertToUserResponse(user);
@@ -79,13 +79,15 @@ public class UserService implements IUserService{
 	
 	/*
 	 * (non-Javadoc)
-	 * @see com.gnolivos.users.service.IUserService#saveOrUpdate(com.gnolivos.users.vo.UserRequest)
+	 * @see com.gnolivos.users.service.IUserService#update(com.gnolivos.users.vo.UserRequest)
 	 */
 	@Override
-	public UserResponse saveOrUpdate(UserRequest request) throws UserValidationException {
+	public UserResponse update(UserRequest request) throws UserValidationException {
 		try {
-			Optional<Users> user = this.userRepository.findById(request.getId());
-			if(user.isPresent()) {
+			Optional<Users> userOp = this.userRepository.findById(request.getId());
+			if(userOp.isPresent()) {
+				Users user = userOp.get();
+				
 				// Validate email
 				this.validateEmail(request.getEmail());
 				
@@ -93,7 +95,7 @@ public class UserService implements IUserService{
 				this.validatePassword(request.getPassword());
 				
 				// Create user object
-				Users userResponse = this.userRepository.save(this.createUser(request, Boolean.TRUE));
+				Users userResponse = this.userRepository.save(this.updateUser(user, request));
 				
 				// Return a user response
 				return this.convertToUserResponse(userResponse);
@@ -104,6 +106,15 @@ public class UserService implements IUserService{
 			throw new UserValidationException(e.getMessage());
 		}
 		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.gnolivos.users.service.IUserService#delete(java.lang.String)
+	 */
+	@Override
+	public void delete(String id) throws UserValidationException {
+		this.userRepository.deleteById(id);
 	}
 	
 	private void validateEmail(String email) {
@@ -132,7 +143,7 @@ public class UserService implements IUserService{
 		}
 	}
 	
-	private Users createUser(UserRequest request, Boolean isUpdate) {
+	private Users createUser(UserRequest request) {
 		// Create user object
 		Users user = new Users();
 		user.setName(request.getName());
@@ -141,7 +152,7 @@ public class UserService implements IUserService{
 		
 		if(!CollectionUtils.isEmpty(request.getPhones())) {
 			
-			List<Phones> phoneList = new ArrayList();
+			List<Phones> phoneList = new ArrayList<Phones>();
 			for(PhoneRequest phoneRequest : request.getPhones()) {
 				Phones phone = new Phones();
 				phone.setNumber(phoneRequest.getNumber());
@@ -149,12 +160,31 @@ public class UserService implements IUserService{
 				phone.setCountryCode(phoneRequest.getCountrycode());
 				phoneList.add(phone);
 			}
-			user.setPhones(new ArrayList());
+			user.setPhones(new ArrayList<Phones>());
 			user.setPhones(phoneList);
 		}
+		return user;
+	}
+	
+	private Users updateUser(Users user, UserRequest request) {
+		// Update user object
+		user.setName(request.getName());
+		user.setEmail(request.getEmail());
+		user.setPassword(request.getPassword());
+		user.setModified(new Date());
 		
-		if(isUpdate) {
-			user.setModified(new Date());
+		if(!CollectionUtils.isEmpty(request.getPhones())) {
+			
+			List<Phones> phoneList = new ArrayList<Phones>();
+			for(PhoneRequest phoneRequest : request.getPhones()) {
+				Phones phone = new Phones();
+				phone.setNumber(phoneRequest.getNumber());
+				phone.setCityCode(phoneRequest.getCitycode());
+				phone.setCountryCode(phoneRequest.getCountrycode());
+				phoneList.add(phone);
+			}
+			user.setPhones(new ArrayList<Phones>());
+			user.setPhones(phoneList);
 		}
 		return user;
 	}

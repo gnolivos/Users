@@ -27,6 +27,12 @@ public interface IUserService {
      * @param request
      * @return
      */
-    UserResponse saveOrUpdate(UserRequest request);
+    UserResponse update(UserRequest request);
+    
+    /**
+     * Delete user
+     * @param id
+     */
+    void delete(String id);
 
 }

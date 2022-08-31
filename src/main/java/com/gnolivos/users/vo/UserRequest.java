@@ -2,12 +2,15 @@ package com.gnolivos.users.vo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author gabriel.nolivos
  *
  */
 public class UserRequest {
 	
+	@JsonIgnore
 	private String id;
 	private String name;
 	private String email;

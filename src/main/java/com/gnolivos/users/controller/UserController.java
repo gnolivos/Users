@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gnolivos.users.common.ApplicationProperties;
-import com.gnolivos.users.common.UserValidationException;
 import com.gnolivos.users.entity.Users;
 import com.gnolivos.users.service.IUserService;
 import com.gnolivos.users.vo.GlobalResponse;
@@ -58,7 +59,7 @@ public class UserController {
 	 * @throws Exception 
 	 */
 	@PostMapping
-    public ResponseEntity<GlobalResponse> create(@RequestBody UserRequest request) throws UserValidationException {
+    public ResponseEntity<GlobalResponse> create(@RequestBody UserRequest request) {
 		try {
 			GlobalResponse response = new GlobalResponse();
 			response.setMessage("Usuario creado exitosamente.");
@@ -83,7 +84,28 @@ public class UserController {
 		try {
 			GlobalResponse response = new GlobalResponse();
 			response.setMessage("Usuario actualizado exitosamente.");
-			response.setUserResponse(this.userService.saveOrUpdate(request));
+			response.setUserResponse(this.userService.update(request));
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.OK);
+		} catch (Exception e) {
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage(e.getMessage());
+			response.setUserResponse(null);
+			return new ResponseEntity<GlobalResponse>(response, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+    }
+	
+	/**
+	 * Delete user
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/{id}")
+    public ResponseEntity<GlobalResponse> delete(@PathVariable("id") String id) {
+		try {
+			GlobalResponse response = new GlobalResponse();
+			response.setMessage("Usuario eliminado exitosamente.");
+			this.userService.delete(id);
 			return new ResponseEntity<GlobalResponse>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			GlobalResponse response = new GlobalResponse();

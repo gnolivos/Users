@@ -1,11 +1,27 @@
 package com.gnolivos.users.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PhoneRequest {
 	
+	@JsonIgnore
+	private String id;
 	private Integer number;
     private Integer citycode;
     private Integer countrycode;
     
+    /**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 	/**
 	 * @return the number
 	 */
@@ -42,7 +58,6 @@ public class PhoneRequest {
 	public void setCountrycode(Integer countrycode) {
 		this.countrycode = countrycode;
 	}
-    
     
 
 }
