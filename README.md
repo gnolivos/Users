@@ -5,10 +5,10 @@ Gradle 7.4.2 y como banco de datos en memoria H2
 También está implementado la herramienta Swagger para especificar la lista de métodos permitidos en el REST API
 
 
-### Clone
+### Clonar proyecto
  > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git`
 
-### Gradle
+### Ejecutar Gradle
  > `Abrir una terminal en la nueva carpeta (users) y ejecutar: gradle clean build`  
 
 ### ENDPOINTS
@@ -55,3 +55,7 @@ También está implementado la herramienta Swagger para especificar la lista de 
 
 ### SWAGGER
  > `Para abrir la herramienta swagger nos dirigimos a la página: http://localhost:8080/swagger-ui.html`
+
+### H2-CONSOLE
+ > `Para abrir la pantalla de administración de la base de datos en memoria se ejecuta : http://localhost:8080/h2-console`
+ > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante un script`
