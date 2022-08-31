@@ -12,6 +12,25 @@ Se implementó JWT como token de usuario y UUID como identificador único de usu
 
 ### CLONAR PROYECTO
  > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git` 
+ 
+### EJECUTAR PROYECTO
+ > `Crear una carpeta workspace.` 
+
+ > `Abrir un IDE y apuntar a la carpeta workspace.`
+
+ > `Importar el proyeto maven recién clonado.`
+
+ > `Click derecho en el proyecto, seleccionar Maven y seleccionar Upadate Project.`
+ 
+ > `Ejecutar el proyecto como Spring Boot App`
+ 
+ 
+### SWAGGER
+ > `Para utilizar los servicios, podemos acceder a la url: http://localhost:8080/swagger-ui.html`
+
+### H2 DATABASE
+ > `Para abrir la pantalla de administración de la base de datos en memoria se ejecuta : http://localhost:8080/h2-console`
+ > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante el script mencionado anteriormente`
 
 ### ENDPOINTS
 
@@ -55,9 +74,3 @@ Se implementó JWT como token de usuario y UUID como identificador único de usu
 ### DELETE: 	`http://localhost:8080/users/{id}`
  > `Servicio para eliminar un usuario`
 
-### SWAGGER
- > `Podemos acceder mediante la url: http://localhost:8080/swagger-ui.html`
-
-### H2 DATABASE
- > `Para abrir la pantalla de administración de la base de datos en memoria se ejecuta : http://localhost:8080/h2-console`
- > `Se coloca la contraseña: password, para poder acceder a las tablas creadas mediante el script mencionado anteriormente`
