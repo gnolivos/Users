@@ -2,7 +2,7 @@ package com.gnolivos.users.vo;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author gabriel.nolivos
@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class UserRequest {
 	
-	@JsonIgnore
 	private String id;
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String email;
+	@NotBlank
 	private String password;
 	private List<PhoneRequest> phones;
 	

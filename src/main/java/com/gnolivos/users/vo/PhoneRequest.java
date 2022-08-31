@@ -1,10 +1,7 @@
 package com.gnolivos.users.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class PhoneRequest {
 	
-	@JsonIgnore
 	private String id;
 	private Integer number;
     private Integer citycode;
