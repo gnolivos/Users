@@ -1,4 +1,6 @@
 
+### INFORMACIÓN GENERAL
+
 Este proyecto esta diseñado en Java 11 con Springboot.
 Gradle 7.4.2 y como banco de datos en memoria H2 Database
 
@@ -8,11 +10,8 @@ El script de la creación de las tablas se encuentra en la dirección: users/src
 
 Se implementó JWT como token de usuario y UUID como identificador único de usuario.
 
-### Clonar proyecto
- > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git`
-
-### Ejecutar Gradle
- > `Abrir una terminal en la nueva carpeta (users) y ejecutar: gradle clean build` 
+### CLONAR PROYECTO
+ > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git` 
 
 ### ENDPOINTS
 
@@ -39,13 +38,13 @@ Se implementó JWT como token de usuario y UUID como identificador único de usu
  > `Servicio para actualizar un usuario`
  
      {
-	       "id":  "890f9114-f1bf-49b8-bcba-da4e3c1d0e39",
+	    "id":  "890f9114-f1bf-49b8-bcba-da4e3c1d0e39",
         "name": "Juan Rodriguez",
         "email": "juan@rodriguez.org",
         "password": "Chanchito11@",
         "phones": [
             {
-		              "id":  "35c9a523-d5e7-45c9-b4a9-cbf1823a739a",
+		        "id":  "35c9a523-d5e7-45c9-b4a9-cbf1823a739a",
                 "number": "1234567",
                 "citycode": "1",
                 "countrycode": "57"
