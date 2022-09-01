@@ -1,14 +1,15 @@
 
 ### INFORMACIÓN GENERAL
 
-Este proyecto esta diseñado en Java 11 con Springboot.
-Gradle 7.4.2 y como banco de datos en memoria H2 Database
+Este proyecto esta diseñado como proyecto maven en Java 11 con Springboot 2.7.3.
 
-También está implementado la herramienta Swagger para especificar la lista de métodos permitidos en el REST API
+Utiliza como banco de datos en memoria H2 Database.
+
+Está implementado la herramienta Swagger para especificar la lista de métodos permitidos en el REST API
 
 El script de la creación de las tablas se encuentra en la dirección: users/src/main/resources/data.sql
 
-Se implementó JWT como token de usuario y UUID como identificador único de usuario.
+Se utilizar JWT como token de usuario y UUID como identificador único de usuario.
 
 ### CLONAR PROYECTO
  > `Crear una carpeta, abrir la terminal y ejecutar: git clone https://github.com/gnolivos/Users.git` 
