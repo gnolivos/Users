@@ -75,3 +75,5 @@ Se utilizar JWT como token de usuario y UUID como identificador único de usuari
 ### DELETE: 	`http://localhost:8080/users/{id}`
  > `Servicio para eliminar un usuario`
 
+
+![Image](https://github.com/gnolivos/Users/blob/develop/DiagramaEntidadRelacion.png)
